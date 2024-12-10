@@ -1,12 +1,16 @@
 {
-  "welcome": "Bienvenido",
+  "welcome": "¡Bienvenido!",
   "login": "Iniciar sesión",
-  "register": "Crear una cuenta",
+  "register": "Registro",
+  "is-registered": "¿Ya estás registrado?",
+  "not-registered-yet": "¿Aún no estás registrado?",
   "sign-in": "Ingressar",
   "sign-up": "Inscribirse",
+  "sign-out": "Salir",
   "email": "E-mail",
-  "password": "Confirmar Clave",
-  "confirm-password": "Confirmar senha",
+  "language": "Idioma",
+  "password": "Contraseña",
+  "confirm-password": "Confirmar contraseña",
   "message-email-required": "E-mail obligatorio.",
   "message-email-invalid-format": "Formato de email no válido.",
   "message-password-required": "Se requiere contraseña.",
@@ -54,5 +58,6 @@
   "min": "Min.",
   "from": "De",
   "to": "Hasta",
-  "days": "Día(s)"
+  "days": "Día(s)",
+  "submit": "Ingressar"
 }

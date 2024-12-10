@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { getTitle, getUser, validateFields } from '../../utils';
+import { getTitle, getUser } from '../../utils';
 import { drop, get, update, save } from '../../services';
 import { useAppContext } from '../../contexts';
+import { TABLE } from '../../constants';
 import {
   AppBarComponent,
   ButtonComponent,
@@ -24,7 +25,7 @@ const Form: React.FC = () => {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
 
-  const getForm = (actionType?: string) => {
+  const getForm = (actionType: string) => {
     switch (actionType) {
       case '1':
         return (
@@ -50,20 +51,11 @@ const Form: React.FC = () => {
   };
 
   const loadData = async (id: string) => {
-    if (id) setData(get(id));
+    if (id) {
+      const result = await get(TABLE, id);
+      setData(result);
+    }
   };
-
-  // const save = async () => {
-  //   const d = JSON.parse(localStorage.getItem('items'));
-  //   let dFinal = [];
-
-  //   if (d) {
-  //     dFinal = [...d, data];
-  //   } else {
-  //     dFinal = [data];
-  //   }
-  //   localStorage.setItem('items', JSON.stringify(dFinal));
-  // };
 
   useEffect(() => {
     if (params && params.id) {
@@ -79,8 +71,8 @@ const Form: React.FC = () => {
         _delete={() => {
           const _confirm = confirm('Deseja mesmo deletar este item?');
           if (_confirm) {
-            drop(id);
-            showAlertMessage('Item deletado com sucesso!!!', 'success');
+            drop(TABLE, id);
+            showAlertMessage('Item deletado com sucesso!!', 'success');
             setTimeout(() => {
               navigate('/');
             }, 3000);
@@ -99,7 +91,7 @@ const Form: React.FC = () => {
         }}
       >
         <GridComponent item='true' size={{ xs: 12 }}>
-          {getForm(actionType)}
+          {getForm(actionType || '1')}
           <ButtonComponent
             loading={loading.toString()}
             type='submit'
@@ -107,39 +99,11 @@ const Form: React.FC = () => {
             variant='contained'
             onClick={async () => {
               if (id) {
-                update(data, id);
+                await update(TABLE, data, id);
               } else {
-                save(data);
+                data.user_id = getUser().id;
+                await save(TABLE, data);
               }
-              // try {
-              //   const fields = validateFields(data, actionType);
-              //   if (fields.length === 0) {
-              //     if (id) {
-              //       await update('action_students', data, id);
-              //     } else {
-              //       data.user_id = getUser().id;
-              //       // await save('action_students', data);
-              //       save(data); /* localStorage */
-              //     }
-              //     showAlertMessage(
-              //       `Item ${id ? 'editado' : 'criado'} com sucesso!!!`,
-              //       'success'
-              //     );
-              //     setTimeout(() => {
-              //       navigate('/');
-              //     }, 3000);
-              //   } else {
-              //     showAlertMessage(
-              //       `Os campos ${fields.join(', ')} são obrigatórios`,
-              //       'warning'
-              //     );
-              //   }
-              // } catch (err) {
-              //   showAlertMessage(
-              //     `Erro ao ${id ? 'editar' : 'criar'} item: ` + err,
-              //     'error'
-              //   );
-              // }
             }}
             sx={{
               mt: 3,

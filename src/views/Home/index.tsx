@@ -8,9 +8,9 @@ import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 
 import { calculateDuration, getUser } from '../../utils';
 import { baby as babyImage } from '../../assets';
+import { ACTIONS, TABLE } from '../../constants';
 import { useAppContext } from '../../contexts';
 import { list } from '../../services';
-import { ACTIONS } from '../../constants';
 import {
   AvatarComponent,
   BoxComponent,
@@ -30,7 +30,7 @@ const Home: React.FC = () => {
   const user = getUser();
 
   const loadData = async () => {
-    const d = list();
+    const d = await list(TABLE);
     if (d) setData(d);
   };
 
@@ -89,6 +89,7 @@ const Home: React.FC = () => {
               </BoxComponent>
             </BoxComponent>
           </GridComponent>
+
           <GridComponent size={{ xs: 4 }}>
             <BoxComponent
               sx={{
@@ -114,6 +115,7 @@ const Home: React.FC = () => {
               </BoxComponent>
             </BoxComponent>
           </GridComponent>
+
           <GridComponent size={{ xs: 4 }}>
             <BoxComponent
               sx={{
@@ -151,6 +153,7 @@ const Home: React.FC = () => {
           </GridComponent>
         </GridComponent>
       </GridComponent>
+
       <GridComponent
         item='true'
         size={{ xs: 12 }}

@@ -13,11 +13,11 @@ interface ISupabaseService {
    * @param id (Opcional) ID do registro a ser atualizado.
    * @returns Promessa contendo os dados atualizados ou inseridos.
    */
-  update<T>(
-    table: any,
-    data: any,
-    id: any
-  ): Promise<PostgrestSingleResponse<any[]>>;
+  update<T extends { id?: string | number }>(
+    table: string,
+    data: Partial<T>,
+    id: string | number | null
+  ): Promise<PostgrestSingleResponse<T[]>>;
 
   /**
    * Remove um registro de uma tabela específica.
@@ -33,10 +33,12 @@ interface ISupabaseService {
   /**
    * Busca um registro em uma tabela com base em condições.
    * @param table Nome da tabela.
+   * @param id ID do registro a ser obtido.
    * @param conditions Array de condições para a consulta.
    * @returns Promessa contendo o primeiro registro encontrado.
    */
-  get<T>(table: string, conditions?: SupabaseCondition[]): Promise<T | null>;
+  // get<T>(table?: string, conditions?: SupabaseCondition[]): Promise<T | null>;
+  get<T>(table: string, id: string): Promise<T | null>;
 
   /**
    * Lista todos os registros de uma tabela para o usuário atual.

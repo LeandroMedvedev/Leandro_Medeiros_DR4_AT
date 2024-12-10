@@ -1,6 +1,6 @@
 import { redirect } from 'react-router-dom';
 
-import { IAuthData } from '../interfaces';
+import { IAuthData, ISignOut } from '../interfaces';
 
 const isAuthenticated = () => {
   const session: string | null = localStorage.getItem('session');
@@ -26,4 +26,13 @@ const signUp = async ({ email, password, supabase }: IAuthData) => await supabas
   email, password
 });
 
-export { isAuthenticated, handlePrivateRouteChecking, signIn, signUp };
+const signOut = async ({ supabase, navigate }: ISignOut) => {
+  localStorage.removeItem("session");
+  localStorage.removeItem("user");
+
+  supabase.auth.signOut();
+
+  return navigate("/signin")
+}
+
+export { isAuthenticated, handlePrivateRouteChecking, signIn, signOut, signUp };

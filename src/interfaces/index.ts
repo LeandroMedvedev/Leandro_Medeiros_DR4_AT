@@ -22,7 +22,7 @@ export type { default as IAvatarProps } from './avatar';
 export type { default as IButtonProps } from './button';
 export type { default as IDiaperProps } from './diaper';
 export type { default as ISwitchProps } from './switch';
-export type { default as IAuthData } from './authData';
+export type { IAuthData, ISignOut } from './authData';
 export type { default as IAlertProps } from './alert';
 export type { default as ISleepProps } from './sleep';
 export type { default as ICardProps } from './card';

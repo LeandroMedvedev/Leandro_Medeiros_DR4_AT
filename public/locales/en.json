@@ -1,10 +1,14 @@
 {
-  "welcome": "Welcome",
+  "welcome": "Welcome!",
   "login": "Login",
   "register": "Create account",
+  "is-registered": "Are you already registered?",
+  "not-registered-yet": "Not registered yet?",
   "sign-in": "Sign In",
   "sign-up": "Sign Up",
+  "sign-out": "Sign Out",
   "email": "E-mail",
+  "language": "Language",
   "password": "Password",
   "confirm-password": "Confirm password",
   "message-email-required": "Email is required.",
@@ -54,5 +58,6 @@
   "min": "Min.",
   "from": "From",
   "to": "To",
-  "days": "Day(s)"
+  "days": "Day(s)",
+  "submit": "Submit"
 }

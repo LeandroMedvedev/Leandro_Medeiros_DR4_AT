@@ -63,22 +63,24 @@ const SignIn: React.FC = () => {
           <AvatarComponent sx={{ width: 180, height: 180 }} src={logo} />
         </GridComponent>
 
+        <GridComponent sx={styles.marginTop} size={{ xs: 8 }}>
+          <TypographyComponent variant='h5'>
+            {translate('welcome')}
+          </TypographyComponent>
+        </GridComponent>
+
         <GridComponent
           sx={{ ...styles.centerBox, ...styles.marginTop }}
           size={{ xs: 8 }}
         >
-          <TypographyComponent variant='h3'>Entrar</TypographyComponent>
-        </GridComponent>
-
-        <GridComponent sx={styles.marginTop} size={{ xs: 8 }}>
-          <TypographyComponent variant='h5'>
-            {translate('welcome')}!
+          <TypographyComponent variant='h3'>
+            {translate('sign-in')}
           </TypographyComponent>
         </GridComponent>
 
         <GridComponent sx={styles.marginTop} size={{ xs: 8 }}>
           <TextFieldComponent
-            label='E-mail'
+            label={translate('email')}
             fullWidth
             value={data.email.value}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,7 +91,7 @@ const SignIn: React.FC = () => {
 
         <GridComponent sx={styles.marginTop} size={{ xs: 8 }}>
           <TextFieldComponent
-            label='Senha'
+            label={translate('password')}
             fullWidth
             value={data.password.value}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,7 +108,7 @@ const SignIn: React.FC = () => {
             onClick={checkSignIn}
             disabled={!data.email.value || !data.password.value}
           >
-            Enviar
+            {translate('submit')}
           </ButtonComponent>
         </GridComponent>
 
@@ -115,7 +117,8 @@ const SignIn: React.FC = () => {
           size={{ xs: 8 }}
         >
           <p>
-            Ainda não é cadastrado? <Link to='/signup'> Cadastrar</Link>
+            {translate('not-registered-yet')}{' '}
+            <Link to='/signup'> {translate('register')}</Link>
           </p>
         </GridComponent>
       </GridComponent>
@@ -142,28 +145,3 @@ const styles = {
 };
 
 export default SignIn;
-
-/*
-  <div>
-    <h1>Sign In</h1>
-    <ButtonComponent onClick={handleSignIn}>Entrar</ButtonComponent>
-    <ButtonComponent onClick={() => showSnackbarMessage('Sucesso')}>
-      Exibir Snackbar
-    </ButtonComponent>
-    <ButtonComponent
-      onClick={() => showAlertMessage('Mensagem de Alerta', 'error')}
-    >
-      Exibir Alerta
-    </ButtonComponent>
-
-    <DateTimePickerComponent
-      ampm={false}
-      format='DD/MM/YYYY HH:mm'
-      onChange={(value: object) => console.log(value.toString())}
-    />
-    <DatePickerComponent
-      format='DD/MM/YYYY'
-      onChange={(value: object) => console.log(value.toString())}
-    />
-  </div>
-*/

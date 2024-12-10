@@ -20,7 +20,7 @@ import {
 } from '../../utils';
 
 const SignUp: React.FC = () => {
-  const { showAlertMessage, supabase } = useAppContext();
+  const { showAlertMessage, supabase, translate } = useAppContext();
   const navigate = useNavigate();
 
   const [data, setData] = useState<SignUpDataProps>({
@@ -95,23 +95,25 @@ const SignUp: React.FC = () => {
           <AvatarComponent sx={{ width: 180, height: 180 }} src={logo} />
         </GridComponent>
 
+        <GridComponent sx={styles.marginTop} size={{ xs: 8 }}>
+          <TypographyComponent variant='h5'>
+            {translate('welcome')}
+          </TypographyComponent>
+        </GridComponent>
+
         <GridComponent
           sx={{ ...styles.centerBox, ...styles.marginTop }}
           size={{ xs: 8 }}
         >
-          <TypographyComponent variant='h3'>Cadastrar</TypographyComponent>
-        </GridComponent>
-
-        <GridComponent sx={styles.marginTop} size={{ xs: 8 }}>
-          <TypographyComponent variant='h5'>
-            Seja Bem-vindo!
+          <TypographyComponent variant='h3'>
+            {translate('sign-up')}
           </TypographyComponent>
         </GridComponent>
 
         <GridComponent sx={styles.marginTop} size={{ xs: 8 }}>
           <TextFieldComponent
             fullWidth
-            label='E-mail'
+            label={translate('email')}
             error={data.email.error}
             helperText={data.email.helperText}
             value={data.email.value}
@@ -124,7 +126,7 @@ const SignUp: React.FC = () => {
         <GridComponent sx={styles.marginTop} size={{ xs: 8 }}>
           <TextFieldComponent
             fullWidth
-            label='Senha'
+            label={translate('password')}
             error={data.password.error}
             helperText={data.password.helperText}
             value={data.password.value}
@@ -138,7 +140,7 @@ const SignUp: React.FC = () => {
         <GridComponent sx={styles.marginTop} size={{ xs: 8 }}>
           <TextFieldComponent
             fullWidth
-            label='Confirmar Senha'
+            label={translate('confirm-password')}
             error={data.confirmPassword.error}
             helperText={data.confirmPassword.helperText}
             value={data.confirmPassword.value}
@@ -164,7 +166,7 @@ const SignUp: React.FC = () => {
               !data.confirmPassword.value
             }
           >
-            Enviar
+            {translate('submit')}
           </ButtonComponent>
         </GridComponent>
 
@@ -173,7 +175,8 @@ const SignUp: React.FC = () => {
           size={{ xs: 8 }}
         >
           <p>
-            Já é cadastrado? <Link to='/signin'> Entrar</Link>
+            {translate('is-registered')}{' '}
+            <Link to='/signin'> {translate('sign-in')}</Link>
           </p>
         </GridComponent>
       </GridComponent>

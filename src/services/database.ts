@@ -1,3 +1,4 @@
+/* Métodos deste arquivo utilizados para armazenamento local */
 interface Item {
   id: string;
   [ key: string ]: any;

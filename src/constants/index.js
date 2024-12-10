@@ -23,4 +23,6 @@ const ACTIONS = [
   },
 ];
 
-export { ACTIONS };
+const TABLE = 'action_students';
+
+export { ACTIONS, TABLE };

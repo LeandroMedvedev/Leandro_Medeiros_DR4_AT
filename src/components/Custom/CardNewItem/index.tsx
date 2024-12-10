@@ -1,14 +1,14 @@
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from 'react-router-dom';
 
+import { ICardNewItemProps } from '../../../interfaces';
+import { useAppContext } from '../../../contexts';
 import {
   CardComponent,
   FabComponent,
   GridComponent,
   TypographyComponent,
 } from '../..';
-import { useAppContext } from '../../../contexts';
-import { ICardNewItemProps } from '../../../interfaces';
 
 const CardNewItemComponent: React.FC<ICardNewItemProps> = ({
   Icon,
@@ -59,18 +59,7 @@ const CardNewItemComponent: React.FC<ICardNewItemProps> = ({
           flexDirection: 'column',
           alignItems: 'center',
         }}
-      >
-        <TypographyComponent
-          sx={{
-            marginTop: '0.5em',
-            fontSize: '0.8em',
-            fontWeight: '400',
-            color: '#8f8f8f',
-          }}
-        >
-          {translate('add_something')}
-        </TypographyComponent>
-      </GridComponent>
+      ></GridComponent>
       <GridComponent
         sx={{
           display: 'flex',

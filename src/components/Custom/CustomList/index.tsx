@@ -20,13 +20,13 @@ const CustomListComponent: React.FC<ICustomListProps> = ({
   const navigate = useNavigate();
   const { translate } = useAppContext();
 
-  const getIcon = (actionType: number) => {
+  const getIcon = (actionType: string) => {
     switch (actionType) {
-      case 1:
+      case '1':
         return <CribIcon />;
-      case 2:
+      case '2':
         return <RestaurantMenuIcon />;
-      case 3:
+      case '3':
         return <SpaIcon />;
       default:
         return <RestaurantMenuIcon />;
@@ -62,7 +62,7 @@ const CustomListComponent: React.FC<ICustomListProps> = ({
           >
             <ListItemAvatar>
               <Avatar sx={{ bgcolor: typeColor[item.action_type] }}>
-                {getIcon(item.action_type)}
+                {getIcon(item.action_type?.toString())}
               </Avatar>
             </ListItemAvatar>
             <ListItemText

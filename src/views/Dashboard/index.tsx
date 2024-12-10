@@ -1,23 +1,30 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ButtonComponent } from '../../components';
-// import { useAppContext } from '../../contexts';
+import { useAppContext } from '../../contexts';
+import { signOut } from '../../services';
+import {
+  ButtonComponent,
+  GridComponent,
+  TypographyComponent,
+} from '../../components';
 
 const Dashboard: React.FC = () => {
+  const { supabase } = useAppContext();
   const navigate = useNavigate();
-  // const { signOut } = useAppContext();
 
   const handleSignOut = () => {
     navigate('/signin');
-    // signOut();
+    signOut({ supabase, navigate });
   };
 
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <GridComponent sx={{ xs: 12 }}>
+      <TypographyComponent sx={{ fontWeight: 900, xs: 12, fontSize: 32 }}>
+        Dashboard
+      </TypographyComponent>
       <ButtonComponent onClick={handleSignOut}>Sair</ButtonComponent>
-    </div>
+    </GridComponent>
   );
 };
 

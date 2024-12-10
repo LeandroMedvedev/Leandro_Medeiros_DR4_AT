@@ -1,4 +1,5 @@
 import { SupabaseClient } from '@supabase/supabase-js';
+import { NavigateFunction } from 'react-router-dom';
 
 interface IAuthData {
   email: string;
@@ -6,4 +7,9 @@ interface IAuthData {
   supabase: SupabaseClient<any, 'public', any>;
 }
 
-export default IAuthData;
+interface ISignOut {
+  supabase: SupabaseClient;
+  navigate: NavigateFunction;
+}
+
+export type { IAuthData, ISignOut };
