@@ -3,8 +3,8 @@ interface Item {
   [ key: string ]: any;
 }
 
-const generateUid = () => {
-  return 'uid-' + Math.random().toString(36).substr(2, 18);
+const generateUuid = () => {
+  return 'uuid-' + Math.random().toString(36).substr(2, 18);
 }
 
 const update = (data: Partial<Item>, id: string) => {
@@ -15,7 +15,7 @@ const update = (data: Partial<Item>, id: string) => {
   updateStorage(totalData);
 }
 
-const drop = (id: string) => {
+const drop = (id?: string) => {
   const totalData = list();
   const index = totalData.findIndex((item: any) => item.id === id);
   totalData.splice(index, 1)
@@ -41,7 +41,7 @@ const save = (data: Omit<Item, 'id'>) => {
   const totalData = list();
 
   const d = {
-    id: generateUid(),
+    id: generateUuid(),
     ...data
   }
 

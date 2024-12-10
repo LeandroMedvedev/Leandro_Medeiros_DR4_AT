@@ -19,7 +19,7 @@ const SleepComponent: React.FC<ISleepProps> = ({
 
   return (
     <GridComponent container={true} spacing={2}>
-      <GridComponent item={true} size={{ xs: 12 }}>
+      <GridComponent item='true' size={{ xs: 12 }}>
         <DateTimePickerComponent
           value={
             data?.start_date
@@ -41,7 +41,8 @@ const SleepComponent: React.FC<ISleepProps> = ({
           }}
         />
       </GridComponent>
-      <GridComponent item={true} size={{ xs: 12 }}>
+
+      <GridComponent item='true' size={{ xs: 12 }}>
         <DateTimePickerComponent
           value={
             data?.end_date ? adjustDateTimeForTimezone(data?.end_date) : null
@@ -61,7 +62,8 @@ const SleepComponent: React.FC<ISleepProps> = ({
           }}
         />
       </GridComponent>
-      <GridComponent item={true} size={{ xs: 12 }}>
+
+      <GridComponent item='true' size={{ xs: 12 }}>
         <TextFieldComponent
           value={data?.observation ? data.observation : ''}
           label={translate('observation')}
@@ -69,7 +71,6 @@ const SleepComponent: React.FC<ISleepProps> = ({
             handleInputChange('observation', event.target.value, data, setData);
           }}
           name='observation'
-          // rows={6}
           fullWidth={true}
           multiline={true}
         />

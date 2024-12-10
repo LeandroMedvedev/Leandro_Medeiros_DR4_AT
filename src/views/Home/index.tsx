@@ -9,7 +9,7 @@ import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 import { calculateDuration, getUser } from '../../utils';
 import { baby as babyImage } from '../../assets';
 import { useAppContext } from '../../contexts';
-import { get, list } from '../../services';
+import { list } from '../../services';
 import { ACTIONS } from '../../constants';
 import {
   AvatarComponent,
@@ -21,12 +21,7 @@ import {
 } from '../../components';
 
 const Home: React.FC = () => {
-  const [profile, setProfile] = useState({
-    // name: '',
-    // birth: '',
-    // height: '',
-    // weight: '',
-  });
+  const [profile, setProfile] = useState({});
   const [data, setData] = useState([]);
 
   const { translate } = useAppContext();
@@ -35,15 +30,8 @@ const Home: React.FC = () => {
   const user = getUser();
 
   const loadData = async () => {
-    const d = await list('action_students');
-    const profile = await get('profile_students', [
-      { field: 'user_id', value: user.id },
-    ]);
-    setProfile(profile);
-
-    if (d) {
-      setData(d);
-    }
+    const d = list();
+    if (d) setData(d);
   };
 
   useEffect(() => {
@@ -164,7 +152,7 @@ const Home: React.FC = () => {
         </GridComponent>
       </GridComponent>
       <GridComponent
-        item={true}
+        item='true'
         size={{ xs: 12 }}
         sx={{
           backgroundColor: theme.palette.primary.main,
@@ -178,7 +166,7 @@ const Home: React.FC = () => {
             padding: 2,
           }}
         >
-          <GridComponent size={{ xs: 12 }} item={true}>
+          <GridComponent size={{ xs: 12 }} item='true'>
             <GridComponent container={true} spacing={2}>
               {ACTIONS.map((action) => (
                 <GridComponent key={uuidv4()} size={{ xs: 4 }}>
@@ -198,7 +186,7 @@ const Home: React.FC = () => {
                 marginTop: '1em',
               }}
             >
-              <GridComponent item={true} size={{ xs: 12 }}>
+              <GridComponent item='true' size={{ xs: 12 }}>
                 {data ? (
                   <CustomListComponent
                     key={uuidv4()}

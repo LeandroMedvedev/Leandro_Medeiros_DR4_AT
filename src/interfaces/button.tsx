@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 interface IButtonProps extends ButtonProps {
   children?: ReactNode;
   props?: any;
-  // loading?: boolean;
+  loading?: any;
   variant?: 'text' | 'contained' | 'outlined';
   size?: 'small' | 'medium' | 'large';
   classname?: '';

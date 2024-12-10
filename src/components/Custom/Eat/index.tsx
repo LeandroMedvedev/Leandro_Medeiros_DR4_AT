@@ -20,7 +20,7 @@ const EatComponent: React.FC<IEatProps> = ({ data, setData, translate }) => {
 
   return (
     <GridComponent container={true} spacing={2}>
-      <GridComponent item={true} size={{ xs: 12 }}>
+      <GridComponent item='true' size={{ xs: 12 }}>
         <ButtonComponent
           color={data.type === 1 ? 'secondary' : 'primary'}
           onClick={() => {
@@ -41,7 +41,7 @@ const EatComponent: React.FC<IEatProps> = ({ data, setData, translate }) => {
           {translate('eat-bosom')}
         </ButtonComponent>
       </GridComponent>
-      <GridComponent item={true} size={{ xs: 12 }}>
+      <GridComponent item='true' size={{ xs: 12 }}>
         <DateTimePickerComponent
           value={
             data?.start_date
@@ -68,7 +68,7 @@ const EatComponent: React.FC<IEatProps> = ({ data, setData, translate }) => {
         />
       </GridComponent>
       {data.type === 2 ? (
-        <GridComponent item={true} size={{ xs: 12 }}>
+        <GridComponent item='true' size={{ xs: 12 }}>
           <DateTimePickerComponent
             value={
               data?.end_date ? adjustDateTimeForTimezone(data?.end_date) : null
@@ -90,7 +90,7 @@ const EatComponent: React.FC<IEatProps> = ({ data, setData, translate }) => {
         </GridComponent>
       ) : null}
       {data.type === 1 ? (
-        <GridComponent item={true} size={{ xs: 12 }}>
+        <GridComponent item='true' size={{ xs: 12 }}>
           <TextFieldComponent
             value={data?.quantity ? data.quantity : ''}
             label={translate('quantity') + ' (ml)'}
@@ -103,7 +103,7 @@ const EatComponent: React.FC<IEatProps> = ({ data, setData, translate }) => {
           />
         </GridComponent>
       ) : (
-        <GridComponent item={true} size={{ xs: 12 }}>
+        <GridComponent item='true' size={{ xs: 12 }}>
           <ButtonComponent
             color={data.side === 1 ? 'secondary' : 'primary'}
             onClick={() => {
@@ -130,7 +130,7 @@ const EatComponent: React.FC<IEatProps> = ({ data, setData, translate }) => {
           </ButtonComponent>
         </GridComponent>
       )}
-      <GridComponent item={true} size={{ xs: 12 }}>
+      <GridComponent item='true' size={{ xs: 12 }}>
         <TextFieldComponent
           value={data?.observation ? data.observation : ''}
           label={translate('observation')}
@@ -138,7 +138,6 @@ const EatComponent: React.FC<IEatProps> = ({ data, setData, translate }) => {
             handleInputChange('observation', event.target.value, data, setData);
           }}
           name='observation'
-          rows={6}
           fullWidth={true}
           multiline={true}
         />

@@ -22,7 +22,7 @@ const DiaperComponent: React.FC<IDiaperProps> = ({
 
   return (
     <GridComponent container={true} spacing={2}>
-      <GridComponent item={true} size={{ xs: 12 }}>
+      <GridComponent item='true' size={{ xs: 12 }}>
         <DateTimePickerComponent
           value={
             data?.start_date
@@ -44,7 +44,7 @@ const DiaperComponent: React.FC<IDiaperProps> = ({
           }}
         />
       </GridComponent>
-      <GridComponent item={true} size={{ xs: 12 }}>
+      <GridComponent item='true' size={{ xs: 12 }}>
         <ButtonComponent
           color={data.type === 1 ? 'secondary' : 'primary'}
           onClick={() => {
@@ -78,7 +78,7 @@ const DiaperComponent: React.FC<IDiaperProps> = ({
           {translate('diaper-clean')}
         </ButtonComponent>
       </GridComponent>
-      <GridComponent item={true} size={{ xs: 12 }}>
+      <GridComponent item='true' size={{ xs: 12 }}>
         <TextFieldComponent
           value={data?.observation ? data.observation : ''}
           label={translate('observation')}
@@ -86,7 +86,6 @@ const DiaperComponent: React.FC<IDiaperProps> = ({
             handleInputChange('observation', event.target.value, data, setData);
           }}
           name='observation'
-          rows={6}
           fullWidth={true}
           multiline={true}
         />
