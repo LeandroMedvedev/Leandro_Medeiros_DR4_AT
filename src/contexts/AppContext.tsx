@@ -6,8 +6,10 @@ import timezone from 'dayjs/plugin/timezone';
 import { useTranslation } from 'react-i18next';
 import React, { ReactNode, useEffect } from 'react';
 import { createContext, useContext, useState } from 'react';
+import { ThemeProvider, useMediaQuery } from '@mui/material';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
+import { darkTheme, lightTheme } from '../theme';
 import { validateEnvVariables } from '../utils';
 import {
   AlertComponent,
@@ -56,6 +58,7 @@ const AppProvider: React.FC<IAppProviderProps> = ({ children }) => {
     AlertSeverity | undefined
   >();
   const timeoutDuration = 5000;
+  const isDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const { t: translate, i18n } = useTranslation();
 
   const showSnackbarMessage = (message: string) => {
@@ -100,29 +103,33 @@ const AppProvider: React.FC<IAppProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <AppContext.Provider value={sharedState}>
-      {children}
-      <SnackbarComponent
-        open={snackbarOpen}
-        onClose={handleClose}
-        autoHideDuration={3000}
-        message={snackbarMessage}
-      />
-      {alertMessage && (
-        <GridComponent
-          container
-          spacing={2}
-          padding={2}
-          sx={{ position: 'absolute', left: 0, bottom: 0, width: '100%' }}
-        >
-          <GridComponent size={5}>
-            <AlertComponent severity={alertSeverity}>
-              {alertMessage}
-            </AlertComponent>
-          </GridComponent>
-        </GridComponent>
-      )}
-    </AppContext.Provider>
+    <div className='app-background'>
+      <AppContext.Provider value={sharedState}>
+        <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+          {children}
+          <SnackbarComponent
+            open={snackbarOpen}
+            onClose={handleClose}
+            autoHideDuration={3000}
+            message={snackbarMessage}
+          />
+          {alertMessage && (
+            <GridComponent
+              container
+              spacing={2}
+              padding={2}
+              sx={{ position: 'absolute', left: 0, bottom: 0, width: '100%' }}
+            >
+              <GridComponent size={5}>
+                <AlertComponent severity={alertSeverity}>
+                  {alertMessage}
+                </AlertComponent>
+              </GridComponent>
+            </GridComponent>
+          )}
+        </ThemeProvider>
+      </AppContext.Provider>
+    </div>
   );
 };
 
